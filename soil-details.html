@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Information - Farming Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'earth-brown': '#8B4513',
+                        'soil-brown': '#A0522D',
+                        'leaf-green': '#6B8E23',
+                        'sage-green': '#9CAF88',
+                        'cream': '#F5F5DC',
+                        'light-green': '#E8F5E8',
+                        'clay-red': '#CD853F',
+                        'sandy-tan': '#D2B48C',
+                        'loam-brown': '#8B7355'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gradient-to-br from-light-green via-cream to-sage-green/30 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white/95 backdrop-blur-sm shadow-lg border-b border-sage-green/20 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-leaf-green rounded-full flex items-center justify-center shadow-lg">
+                        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" />
+                            <path
+                                d="M12 16C12 18.21 10.21 20 8 20C5.79 20 4 18.21 4 16C4 13.79 5.79 12 8 12C10.21 12 12 13.79 12 16Z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-bold text-earth-brown">Soil Information Guide</h1>
+                        <p class="text-gray-600">Discover the perfect soil for your crops</p>
+                    </div>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-6">
+                    <div class="flex items-center space-x-2 text-sm text-gray-600">
+                        <svg class="w-4 h-4 text-leaf-green" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                        </svg>
+                        <span>Expert Verified</span>
+                    </div>
+                    <div class="flex items-center space-x-2 text-sm text-gray-600">
+                        <svg class="w-4 h-4 text-leaf-green" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+                        </svg>
+                        <span>Updated Daily</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Introduction Section -->
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-earth-brown mb-4">Choose the Right Soil for Your Farm</h2>
+            <p class="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                Understanding soil types is crucial for successful farming. Each soil type has unique characteristics
+                that make it suitable for different crops. Explore our comprehensive guide to find the perfect match for
+                your agricultural needs.
+            </p>
+        </div>
+
+        <!-- Filter Section -->
+        <div class="mb-8 flex flex-wrap justify-center gap-4">
+            <button onclick="filterSoils('all')"
+                class="filter-btn active px-6 py-3 rounded-full font-semibold transition-all duration-200 bg-leaf-green text-white shadow-lg hover:shadow-xl">
+                All Soils
+            </button>
+            <button onclick="filterSoils('vegetables')"
+                class="filter-btn px-6 py-3 rounded-full font-semibold transition-all duration-200 bg-white text-gray-700 shadow-md hover:shadow-lg border border-gray-200">
+                Best for Vegetables
+            </button>
+            <button onclick="filterSoils('grains')"
+                class="filter-btn px-6 py-3 rounded-full font-semibold transition-all duration-200 bg-white text-gray-700 shadow-md hover:shadow-lg border border-gray-200">
+                Best for Grains
+            </button>
+            <button onclick="filterSoils('fruits')"
+                class="filter-btn px-6 py-3 rounded-full font-semibold transition-all duration-200 bg-white text-gray-700 shadow-md hover:shadow-lg border border-gray-200">
+                Best for Fruits
+            </button>
+        </div>
+
+        <!-- Soil Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Sandy Loam Soil -->
+            <div
+                class="soil-card vegetables grains fruits bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 hover:scale-105">
+                <div class="relative h-48 bg-gradient-to-br from-sandy-tan to-loam-brown overflow-hidden">
+                    <!-- Soil Illustration -->
+                    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 300 200" fill="none">
+                        <!-- Soil layers -->
+                        <rect x="0" y="120" width="300" height="80" fill="#D2B48C" opacity="0.8" />
+                        <rect x="0" y="140" width="300" height="60" fill="#CD853F" opacity="0.6" />
+                        <rect x="0" y="160" width="300" height="40" fill="#A0522D" opacity="0.8" />
+
+                        <!-- Soil particles -->
+                        <circle cx="50" cy="130" r="3" fill="#8B4513" opacity="0.7" />
+                        <circle cx="80" cy="145" r="2" fill="#654321" opacity="0.8" />
+                        <circle cx="120" cy="135" r="2.5" fill="#8B4513" opacity="0.6" />
+                        <circle cx="180" cy="150" r="3" fill="#654321" opacity="0.7" />
+                        <circle cx="220" cy="140" r="2" fill="#8B4513" opacity="0.8" />
+                        <circle cx="260" cy="155" r="2.5" fill="#654321" opacity="0.6" />
+
+                        <!-- Small plants -->
+                        <g fill="#6B8E23">
+                            <rect x="70" y="100" width="2" height="20" rx="1" />
+                            <rect x="150" y="95" width="2" height="25" rx="1" />
+                            <rect x="230" y="105" width="2" height="15" rx="1" />
+                        </g>
+                        <g fill="#228B22">
+                            <ellipse cx="71" cy="95" rx="4" ry="2" />
+                            <ellipse cx="151" cy="90" rx="5" ry="3" />
+                            <ellipse cx="231" cy="100" rx="3" ry="2" />
+                        </g>
+                    </svg>
+
+                    <div
+                        class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-semibold text-sandy-tan">
+                        pH 6.0-7.0
+                    </div>
+                </div>
+
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-2xl font-bold text-earth-brown">Sandy Loam</h3>
+                        <div class="flex items-center space-x-1">
+                            <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            <span class="text-sm text-gray-600">Most Popular</span>
+                        </div>
+                    </div>
+
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        The ideal balance of sand, silt, and clay. Excellent drainage with good water retention. Easy to
+                        work with and suitable for most crops.
+                    </p>
+
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-leaf-green" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                            </svg>
+                            Suitable Crops
+                        </h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-leaf-green/10 text-leaf-green rounded-full text-sm font-medium">Tomatoes</span>
+                            <span
+                                class="px-3 py-1 bg-leaf-green/10 text-leaf-green rounded-full text-sm font-medium">Corn</span>
+                            <span
+                                class="px-3 py-1 bg-leaf-green/10 text-leaf-green rounded-full text-sm font-medium">Wheat</span>
+                            <span
+                                class="px-3 py-1 bg-leaf-green/10 text-leaf-green rounded-full text-sm font-medium">Carrots</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between text-sm text-gray-600">
+                        <div class="flex items-center">
+                            <svg class="w-4 h-4 mr-1 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            <span>Excellent Drainage</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-4 h-4 mr-1 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>Easy to Work</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clay Soil -->
+            <div
+                class="soil-card vegetables bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 hover:scale-105">
+                <div class="relative h-48 bg-gradient-to-br from-clay-red to-soil-brown overflow-hidden">
+                    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 300 200" fill="none">
+                        <!-- Clay soil layers -->
+                        <rect x="0" y="120" width="300" height="80" fill="#CD853F" opacity="0.9" />
+                        <rect x="0" y="140" width="300" height="60" fill="#A0522D" opacity="0.8" />
+                        <rect x="0" y="160" width="300" height="40" fill="#8B4513" opacity="0.9" />
+
+                        <!-- Clay texture -->
+                        <path d="M0 130 Q50 125 100 130 T200 130 T300 130" stroke="#654321" stroke-width="1" fill="none"
+                            opacity="0.6" />
+                        <path d="M0 150 Q75 145 150 150 T300 150" stroke="#654321" stroke-width="1" fill="none"
+                            opacity="0.5" />
+
+                        <!-- Root vegetables -->
+                        <g fill="#8B4513">
+                            <ellipse cx="80" cy="145" rx="8" ry="12" />
+                            <ellipse cx="180" cy="150" rx="6" ry="10" />
+                            <ellipse cx="240" cy="140" rx="7" ry="11" />
+                        </g>
+
+                        <!-- Plant stems -->
+                        <g fill="#6B8E23">
+                            <rect x="79" y="100" width="2" height="25" rx="1" />
+                            <rect x="179" y="105" width="2" height="20" rx="1" />
+                            <rect x="239" y="95" width="2" height="25" rx="1" />
+                        </g>
+
+                        <!-- Leaves -->
+                        <g fill="#228B22">
+                            <ellipse cx="80" cy="95" rx="6" ry="3" />
+                            <ellipse cx="180" cy="100" rx="5" ry="2" />
+                            <ellipse cx="240" cy="90" rx="7" ry="4" />
+                        </g>
+                    </svg>
+
+                    <div
+                        class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-semibold text-clay-red">
+                        pH 6.5-7.5
+                    </div>
+                </div>
+
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-2xl font-bold text-earth-brown">Clay Soil</h3>
+                        <div class="flex items-center space-x-1">
+                            <svg class="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            <span class="text-sm text-gray-600">Nutrient Rich</span>
+                        </div>
+                    </div>
+
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        Dense, nutrient-rich soil with excellent water retention. Ideal for crops that need consistent
+                        moisture and plenty of nutrients.
+                    </p>
+
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-leaf-green" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                            </svg>
+                            Suitable Crops
+                        </h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-leaf-green/10 text-leaf-green rounded-full text-sm font-medium">Cabbage</span>
+                            <span
+                                class="px-3 py-1 bg-leaf-green/10 text-leaf-green rounded-full text-sm font-medium">Broccoli</span>
+                            <span
+                                class="px-3 py-1 bg-leaf-green/10 text-leaf-green rounded-full text-sm font-medium">Lettuce</span>
+                            <span
+                                class="px-3 py-1 bg-leaf-green/10 text-leaf-green rounded-full text-sm font-medium">Beans</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between text-sm text-gray-600">
+                        <div class="flex items-center">
+                            <svg class="w-4 h-4 mr-1 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            <span>High Nutrients</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-4 h-4 mr-1 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            <span>Water Retention</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sandy Soil -->
+            <div
+                class="soil-card fruits grains bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 hover:scale-105">
+                <div class="relative h-48 bg-gradient-to-br from-sandy-tan to-cream overflow-hidden">
+                    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 300 200" fill="none">
+                        <!-- Sandy soil layers -->
+                        <rect x="0" y="120" width="300" height="80" fill="#F4A460" opacity="0.8" />
+                        <rect x="0" y="140" width="300" height="60" fill="#DEB887" opacity="0.7" />
+                        <rect x="0" y="160" width="300" height="40" fill="#D2B48C" opacity="0.8" />
+
+                        <!-- Sand particles -->
+                        <g fill="#CD853F" opacity="0.6">
+                            <circle cx="30" cy="130" r="1" />
+                            <circle cx="60" cy="145" r="1.5" />
+                            <circle cx="90" cy="135" r="1" />
+                            <circle cx="130" cy="150" r="1.5" />
+                            <circle cx="170" cy="140" r="1" />
+                            <circle cx="210" cy="155" r="1.5" />
+                            <circle cx="250" cy="135" r="1" />
+                            <circle cx="280" cy="148" r="1.5" />
+                        </g>
+
+                        <!-- Drought-resistant plants -->
+                        <g fill="#6B8E23">
+                            <rect x="100" y="90" width="3" height="30" rx="1" />
+                            <rect x="200" y="85" width="3" height="35" rx="1" />
+                        </g>
+                        <g fill="#228B22">
+                            <ellipse cx="101" cy="85" rx="8" ry="4" />
+                            <ellipse cx="201" cy="80" rx="10" ry="5" />
+                        </g>
+
+                        <!-- Cacti-like plants -->
+                        <g fill="#6B8E23">
+                            <ellipse cx="50" cy="110" rx="4" ry="15" />
+                            <ellipse cx="250" cy="105" rx="3" ry="20" />
+                        </g>
+                    </svg>
+
+                    <div
+                        class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-semibold text-sandy-tan">
+                        pH 5.5-7.0
+                    </div>
+                </div>
+
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-2xl font-bold text-earth-brown">Sandy Soil</h3>
+                        <div class="flex items-center space-x-1">
+                            <svg class="w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            <span class="text-sm text-gray-600">Fast Draining</span>
+                        </div>
+                    </div>
+
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        Light, well-draining soil that warms up quickly in spring. Perfect for root vegetables and crops
+                        that prefer drier conditions.
+                    </p>
+
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-leaf-green" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                            </svg>
+                            Suitable Crops
+                        </h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-leaf-green/10 text-leaf-green rounded-full text-sm font-medium">Potatoes</span>
+                            <span
+                                class="px-3 py-1 bg-leaf-green/10 text-leaf-green rounded-full text-sm font-medium">Radishes</span>
+                            <span
+                                class="px-3 py-1 bg-leaf-green/10 text-leaf-green rounded-full text-sm font-medium">Strawberries</span>
+                            <span
+                                class="px-3 py-1 bg-leaf-green/10 text-leaf-green rounded-full text-sm font-medium">Asparagus</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between text-sm text-gray-600">
+                        <div class="flex items-center">
+                            <svg class="w-4 h-4 mr-1 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            <span>Quick Warming</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-4 h-4 mr-1 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            <span>Fast Drainage</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Silt Soil -->
+            <div
+                class="soil-card vegetables grains bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 hover:scale-105">
+                <div class="relative h-48 bg-gradient-to-br from-loam-brown to-soil-brown overflow-hidden">
+                    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 300 200" fill="none">
+                        <!-- Silt soil layers -->
+                        <rect x="0" y="120" width="300" height="80" fill="#8B7355" opacity="0.8" />
+                        <rect x="0" y="140" width="300" height="60" fill="#A0522D" opacity="0.7" />
+                        <rect x="0" y="160" width="300" height="40" fill="#8B4513" opacity="0.8" />
+
+                        <!-- Smooth silt texture -->
+                        <path d="M0 125 Q100 120 200 125 T300 125" stroke="#654321" stroke-width="0.5" fill="none"
+                            opacity="0.4" />
+                        <path d="M0 135 Q150 130 300 135" stroke="#654321" stroke-width="0.5" fill="none"
+                            opacity="0.3" />
+                        <path d="M0 145 Q75 140 150 145 T300 145" stroke="#654321" stroke-width="0.5" fill="none"
+                            opacity="0.4" />
+
+                        <!-- Grain crops -->
+                        <g fill="#6B8E23">
+                            <rect x="60" y="80" width="2" height="40" rx="1" />
+                            <rect x="120" y="75" width="2" height="45" rx="1" />
+                            <rect x="180" y="85" width="2" height="35" rx="1" />
+                            <rect x="240" y="70" width="2" height="50" rx="1" />
+                        </g>
+
+                        <!-- Grain heads -->
+                        <g fill="#DAA520">
+                            <ellipse cx="61" cy="75" rx="3" ry="8" />
+                            <ellipse cx="121" cy="70" rx="3" ry="10" />
+                            <ellipse cx="181" cy="80" rx="3" ry="7" />
+                            <ellipse cx="241" cy="65" rx="3" ry="12" />
+                        </g>
+                    </svg>
+
+                    <div
+                        class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-semibold text-loam-brown">
+                        pH 6.0-7.5
+                    </div>
+                </div>
+
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-2xl font-bold text-earth-brown">Silt Soil</h3>
+                        <div class="flex items-center space-x-1">
+                            <svg class="w-5 h-5 text-purple-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            <span class="text-sm text-gray-600">Fertile</span>
+                        </div>
+                    </div>
+
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        Smooth, fertile soil with good moisture retention. Excellent for growing grains and vegetables
+                        that need consistent water supply.
+                    </p>
+
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-leaf-green" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                            </svg>
+                            Suitable Crops
+                        </h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-leaf-green/10 text-leaf-green rounded-full text-sm font-medium">Rice</span>
+                            <span
+                                class="px-3 py-1 bg-leaf-green/10 text-leaf-green rounded-full text-sm font-medium">Barley</span>
+                            <span
+                                class="px-3 py-1 bg-leaf-green/10 text-leaf-green rounded-full text-sm font-medium">Spinach</span>
+                            <span
+                                class="px-3 py-1 bg-leaf-green/10 text-leaf-green rounded-full text-sm font-medium">Peas</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between text-sm text-gray-600">
+                        <div class="flex items-center">
+                            <svg class="w-4 h-4 mr-1 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            <span>Moisture Retention</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-4 h-4 mr-1 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>High Fertility</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Peat Soil -->
+            <div
+                class="soil-card vegetables fruits bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 hover:scale-105">
+                <div class="relative h-48 bg-gradient-to-br from-earth-brown to-soil-brown overflow-hidden">
+                    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 300 200" fill="none">
+                        <!-- Peat soil layers -->
+                        <rect x="0" y="120" width="300" height="80" fill="#654321" opacity="0.9" />
+                        <rect x="0" y="140" width="300" height="60" fill="#5D4037" opacity="0.8" />
+                        <rect x="0" y="160" width="300" height="40" fill="#4E342E" opacity="0.9" />
+
+                        <!-- Organic matter -->
+                        <g fill="#8B4513" opacity="0.6">
+                            <ellipse cx="40" cy="135" rx="6" ry="3" />
+                            <ellipse cx="100" cy="150" rx="8" ry="4" />
+                            <ellipse cx="180" cy="140" rx="5" ry="2" />
+                            <ellipse cx="240" cy="155" rx="7" ry="3" />
+                        </g>
+
+                        <!-- Acid-loving plants -->
+                        <g fill="#6B8E23">
+                            <rect x="80" y="85" width="2" height="35" rx="1" />
+                            <rect x="160" y="90" width="2" height="30" rx="1" />
+                            <rect x="220" y="80" width="2" height="40" rx="1" />
+                        </g>
+
+                        <!-- Berry bushes -->
+                        <g fill="#228B22">
+                            <ellipse cx="81" cy="80" rx="8" ry="5" />
+                            <ellipse cx="161" cy="85" rx="6" ry="4" />
+                            <ellipse cx="221" cy="75" rx="9" ry="6" />
+                        </g>
+
+                        <!-- Berries -->
+                        <g fill="#DC143C">
+                            <circle cx="78" cy="78" r="1.5" />
+                            <circle cx="84" cy="82" r="1.5" />
+                            <circle cx="158" cy="83" r="1" />
+                            <circle cx="164" cy="87" r="1" />
+                            <circle cx="218" cy="73" r="1.5" />
+                            <circle cx="224" cy="77" r="1.5" />
+                        </g>
+                    </svg>
+
+                    <div
+                        class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-semibold text-earth-brown">
+                        pH 4.0-5.5
+                    </div>
+                </div>
+
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-2xl font-bold text-earth-brown">Peat Soil</h3>
+                        <div class="flex items-center space-x-1">
+                            <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            <span class="text-sm text-gray-600">Acidic</span>
+                        </div>
+                    </div>
+
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        Rich in organic matter with acidic pH. Excellent water retention and perfect for acid-loving
+                        plants and specialty crops.
+                    </p>
+
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-leaf-green" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                            </svg>
+                            Suitable Crops
+                        </h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-leaf-green/10 text-leaf-green rounded-full text-sm font-medium">Blueberries</span>
+                            <span
+                                class="px-3 py-1 bg-leaf-green/10 text-leaf-green rounded-full text-sm font-medium">Cranberries</span>
+                            <span
+                                class="px-3 py-1 bg-leaf-green/10 text-leaf-green rounded-full text-sm font-medium">Azaleas</span>
+                            <span
+                                class="px-3 py-1 bg-leaf-green/10 text-leaf-green rounded-full text-sm font-medium">Heather</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between text-sm text-gray-600">
+                        <div class="flex items-center">
+                            <svg class="w-4 h-4 mr-1 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>Organic Rich</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-4 h-4 mr-1 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            <span>Water Loving</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chalk Soil -->
+            <div
+                class="soil-card grains fruits bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 hover:scale-105">
+                <div class="relative h-48 bg-gradient-to-br from-cream to-sandy-tan overflow-hidden">
+                    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 300 200" fill="none">
+                        <!-- Chalk soil layers -->
+                        <rect x="0" y="120" width="300" height="80" fill="#F5F5DC" opacity="0.9" />
+                        <rect x="0" y="140" width="300" height="60" fill="#DDBEA9" opacity="0.8" />
+                        <rect x="0" y="160" width="300" height="40" fill="#D2B48C" opacity="0.7" />
+
+                        <!-- Chalk particles -->
+                        <g fill="#FFFFFF" opacity="0.8">
+                            <circle cx="50" cy="130" r="2" />
+                            <circle cx="100" cy="145" r="1.5" />
+                            <circle cx="150" cy="135" r="2" />
+                            <circle cx="200" cy="150" r="1.5" />
+                            <circle cx="250" cy="140" r="2" />
+                        </g>
+
+                        <!-- Alkaline-loving plants -->
+                        <g fill="#6B8E23">
+                            <rect x="70" y="85" width="2" height="35" rx="1" />
+                            <rect x="140" y="80" width="2" height="40" rx="1" />
+                            <rect x="210" y="90" width="2" height="30" rx="1" />
+                        </g>
+
+                        <!-- Herb-like plants -->
+                        <g fill="#228B22">
+                            <ellipse cx="71" cy="80" rx="5" ry="3" />
+                            <ellipse cx="141" cy="75" rx="6" ry="4" />
+                            <ellipse cx="211" cy="85" rx="4" ry="3" />
+                        </g>
+
+                        <!-- Small flowers -->
+                        <g fill="#FFD700">
+                            <circle cx="68" cy="78" r="1" />
+                            <circle cx="74" cy="82" r="1" />
+                            <circle cx="138" cy="73" r="1" />
+                            <circle cx="144" cy="77" r="1" />
+                            <circle cx="208" cy="83" r="1" />
+                            <circle cx="214" cy="87" r="1" />
+                        </g>
+                    </svg>
+
+                    <div
+                        class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-semibold text-sandy-tan">
+                        pH 7.5-8.5
+                    </div>
+                </div>
+
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-2xl font-bold text-earth-brown">Chalk Soil</h3>
+                        <div class="flex items-center space-x-1">
+                            <svg class="w-5 h-5 text-indigo-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            <span class="text-sm text-gray-600">Alkaline</span>
+                        </div>
+                    </div>
+
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        Light, alkaline soil with good drainage. Rich in calcium and ideal for plants that thrive in
+                        alkaline conditions.
+                    </p>
+
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-leaf-green" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                            </svg>
+                            Suitable Crops
+                        </h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-leaf-green/10 text-leaf-green rounded-full text-sm font-medium">Lavender</span>
+                            <span
+                                class="px-3 py-1 bg-leaf-green/10 text-leaf-green rounded-full text-sm font-medium">Rosemary</span>
+                            <span
+                                class="px-3 py-1 bg-leaf-green/10 text-leaf-green rounded-full text-sm font-medium">Grapes</span>
+                            <span
+                                class="px-3 py-1 bg-leaf-green/10 text-leaf-green rounded-full text-sm font-medium">Beets</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between text-sm text-gray-600">
+                        <div class="flex items-center">
+                            <svg class="w-4 h-4 mr-1 text-purple-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            <span>Calcium Rich</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-4 h-4 mr-1 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            <span>Well Draining</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Information Section -->
+        <div class="mt-16 bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-gray-100">
+            <h3 class="text-2xl font-bold text-earth-brown mb-6 text-center">Soil Selection Tips</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-leaf-green/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-leaf-green" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Test Your Soil</h4>
+                    <p class="text-gray-600 text-sm">Always test pH levels and nutrient content before planting to
+                        ensure optimal growing conditions.</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-earth-brown/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-earth-brown" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Consider Climate</h4>
+                    <p class="text-gray-600 text-sm">Match soil types with your local climate conditions for the best
+                        agricultural results.</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-sage-green/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-sage-green" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Improve Gradually</h4>
+                    <p class="text-gray-600 text-sm">Enhance soil quality over time with organic matter, compost, and
+                        proper crop rotation.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-earth-brown text-white py-8 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-lg mb-2">🌱 Growing Knowledge, Harvesting Success</p>
+            <p class="text-sm opacity-80">Your trusted partner in sustainable agriculture</p>
+        </div>
+    </footer>
+
+    <script>
+        function filterSoils(category) {
+            const cards = document.querySelectorAll('.soil-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // Update button states
+            buttons.forEach(btn => {
+                btn.classList.remove('active', 'bg-leaf-green', 'text-white');
+                btn.classList.add('bg-white', 'text-gray-700', 'border', 'border-gray-200');
+            });
+
+            event.target.classList.remove('bg-white', 'text-gray-700', 'border', 'border-gray-200');
+            event.target.classList.add('active', 'bg-leaf-green', 'text-white');
+
+            // Filter cards
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeIn 0.5s ease-in-out';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Add CSS animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add hover effects to cards
+        document.addEventListener('DOMContentLoaded', function () {
+            const cards = document.querySelectorAll('.soil-card');
+
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function () {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+    <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'95a0c0b8c1f05994',t:'MTc1MTY1NDQ0NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+
+    <script type="module">
+        import { loadSoils, loadDistributors } from './js/user.js';
+
+        if (document.getElementById("soilList")) loadSoils();
+        if (document.getElementById("distList")) loadDistributors();
+    </script>
+
+</body>
+
+</html>

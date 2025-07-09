@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Farming Agent - Explore Soil Types & Crop Distributors</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'earth-brown': '#8B4513',
+                        'soil-brown': '#A0522D',
+                        'leaf-green': '#6B8E23',
+                        'sage-green': '#9CAF88',
+                        'cream': '#F5F5DC'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-cream font-sans">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-leaf-green rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" />
+                            <path
+                                d="M12 16C12 18.21 10.21 20 8 20C5.79 20 4 18.21 4 16C4 13.79 5.79 12 8 12C10.21 12 12 13.79 12 16Z" />
+                        </svg>
+                    </div>
+                    <span class="text-2xl font-bold text-earth-brown">Soil Farming Agent</span>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="flex items-center space-x-6">
+                    <a href="#features"
+                        class="text-gray-700 hover:text-leaf-green transition-colors duration-200">Features</a>
+                    <!-- <a href="#about"
+                        class="text-gray-700 hover:text-leaf-green transition-colors duration-200">About</a> -->
+                    <a href="login.html"
+                        class="text-leaf-green hover:text-earth-brown font-medium transition-colors duration-200">Login</a>
+                    <a href="register.html"
+                        class="bg-leaf-green text-white px-6 py-2 rounded-lg hover:bg-earth-brown transition-colors duration-200">Register</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-sage-green to-cream py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Hero Content -->
+                <div class="space-y-8">
+                    <h1 class="text-5xl lg:text-6xl font-bold text-earth-brown leading-tight">
+                        Smart Farming
+                        <span class="text-leaf-green">Starts Here</span>
+                    </h1>
+                    <p class="text-xl text-gray-700 leading-relaxed">
+                        Discover the perfect soil types for your crops and connect with trusted distributors.
+                        Our intelligent platform helps farmers make informed decisions for better harvests.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="soil-details.html"
+                            class="bg-leaf-green text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-earth-brown transform hover:scale-105 transition-all duration-200 shadow-lg">
+                            Explore Soil Types
+                        </a>
+
+                        <a href="distributor-details.html"
+                            class="border-2 border-leaf-green text-leaf-green px-8 py-4 rounded-lg text-lg font-semibold hover:bg-leaf-green hover:text-white transition-all duration-200">
+                            Find Distributors
+                        </a>
+
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-6 pt-8">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-earth-brown">500+</div>
+                            <div class="text-gray-600">Soil Types</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-earth-brown">1000+</div>
+                            <div class="text-gray-600">Distributors</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-earth-brown">50k+</div>
+                            <div class="text-gray-600">Farmers</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Illustration -->
+                <div class="flex justify-center">
+                    <div class="relative">
+                        <svg class="w-96 h-96" viewBox="0 0 400 400" fill="none">
+                            <!-- Sky background -->
+                            <rect width="400" height="200" fill="#E6F3FF" />
+
+                            <!-- Ground layers -->
+                            <rect y="200" width="400" height="50" fill="#8FBC8F" />
+                            <rect y="250" width="400" height="50" fill="#A0522D" />
+                            <rect y="300" width="400" height="50" fill="#8B4513" />
+                            <rect y="350" width="400" height="50" fill="#654321" />
+
+                            <!-- Plants/Crops -->
+                            <g transform="translate(50, 150)">
+                                <!-- Corn stalks -->
+                                <rect x="0" y="0" width="8" height="60" fill="#6B8E23" />
+                                <ellipse cx="4" cy="-5" rx="12" ry="8" fill="#FFD700" />
+
+                                <rect x="30" y="10" width="8" height="50" fill="#6B8E23" />
+                                <ellipse cx="34" cy="5" rx="12" ry="8" fill="#FFD700" />
+
+                                <rect x="60" y="5" width="8" height="55" fill="#6B8E23" />
+                                <ellipse cx="64" cy="0" rx="12" ry="8" fill="#FFD700" />
+                            </g>
+
+                            <!-- Vegetables -->
+                            <g transform="translate(200, 170)">
+                                <!-- Carrots in soil -->
+                                <ellipse cx="10" cy="20" rx="4" ry="15" fill="#FF6347" />
+                                <path d="M6 5 L10 0 L14 5" stroke="#228B22" stroke-width="2" fill="none" />
+
+                                <ellipse cx="30" cy="25" rx="4" ry="15" fill="#FF6347" />
+                                <path d="M26 10 L30 5 L34 10" stroke="#228B22" stroke-width="2" fill="none" />
+
+                                <ellipse cx="50" cy="22" rx="4" ry="15" fill="#FF6347" />
+                                <path d="M46 7 L50 2 L54 7" stroke="#228B22" stroke-width="2" fill="none" />
+                            </g>
+
+                            <!-- Trees -->
+                            <g transform="translate(300, 120)">
+                                <rect x="15" y="40" width="10" height="40" fill="#8B4513" />
+                                <circle cx="20" cy="35" r="25" fill="#228B22" />
+                                <circle cx="10" cy="30" r="15" fill="#32CD32" />
+                                <circle cx="30" cy="30" r="15" fill="#32CD32" />
+                            </g>
+
+                            <!-- Sun -->
+                            <circle cx="350" cy="50" r="25" fill="#FFD700" />
+                            <g stroke="#FFD700" stroke-width="3">
+                                <line x1="350" y1="10" x2="350" y2="20" />
+                                <line x1="350" y1="80" x2="350" y2="90" />
+                                <line x1="310" y1="50" x2="320" y2="50" />
+                                <line x1="380" y1="50" x2="390" y2="50" />
+                                <line x1="325" y1="25" x2="332" y2="32" />
+                                <line x1="368" y1="68" x2="375" y2="75" />
+                                <line x1="375" y1="25" x2="368" y2="32" />
+                                <line x1="332" y1="68" x2="325" y2="75" />
+                            </g>
+
+                            <!-- Soil analysis points -->
+                            <circle cx="100" cy="275" r="4" fill="#FF4444" />
+                            <circle cx="200" cy="285" r="4" fill="#FF4444" />
+                            <circle cx="300" cy="270" r="4" fill="#FF4444" />
+
+                            <!-- Analysis lines -->
+                            <line x1="100" y1="275" x2="120" y2="255" stroke="#FF4444" stroke-width="2"
+                                stroke-dasharray="5,5" />
+                            <line x1="200" y1="285" x2="220" y2="265" stroke="#FF4444" stroke-width="2"
+                                stroke-dasharray="5,5" />
+                            <line x1="300" y1="270" x2="320" y2="250" stroke="#FF4444" stroke-width="2"
+                                stroke-dasharray="5,5" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-earth-brown mb-4">Why Choose Soil Farming Agent?</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Our platform combines cutting-edge technology with agricultural expertise to help you make the best
+                    farming decisions.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-cream p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-16 h-16 bg-leaf-green rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-earth-brown mb-4">Soil Analysis</h3>
+                    <p class="text-gray-700">
+                        Get detailed insights into soil composition, pH levels, and nutrient content to optimize your
+                        crop selection.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-cream p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-16 h-16 bg-leaf-green rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-earth-brown mb-4">Crop Matching</h3>
+                    <p class="text-gray-700">
+                        Find the perfect crops for your soil type with our intelligent matching system based on
+                        scientific data.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-cream p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-16 h-16 bg-leaf-green rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-earth-brown mb-4">Distributor Network</h3>
+                    <p class="text-gray-700">
+                        Connect with verified seed and fertilizer distributors in your area for the best prices and
+                        quality.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-leaf-green py-20">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-white mb-6">Ready to Transform Your Farming?</h2>
+            <p class="text-xl text-green-100 mb-8">
+                Join thousands of farmers who are already using our platform to make smarter agricultural decisions.
+            </p>
+            <a href="register.html"
+                class="bg-white text-leaf-green px-8 py-4 rounded-lg text-lg font-semibold hover:bg-cream transform hover:scale-105 transition-all duration-200 shadow-lg">
+                Get Started Today
+            </a>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-earth-brown text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-leaf-green rounded-full flex items-center justify-center">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" />
+                            </svg>
+                        </div>
+                        <span class="text-xl font-bold">Soil Farming Agent</span>
+                    </div>
+                    <p class="text-gray-300">Empowering farmers with intelligent soil and crop insights.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Platform</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Soil Analysis</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Crop Matching</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Distributors</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Documentation</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-600 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 Soil Farming Agent. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'95a0ac41450c59dc',t:'MTc1MTY1MzYwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+</body>
+
+</html>

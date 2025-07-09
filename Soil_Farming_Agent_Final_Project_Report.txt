@@ -1,0 +1,97 @@
+
+SOIL FARMING AGENT - FINAL PROJECT REPORT
+=========================================
+
+Project Title: Soil Farming Agent
+Project Domain: Agriculture
+Technology Stack: HTML, CSS (Tailwind), JavaScript, Firebase (Auth, Firestore, Hosting)
+Difficulty Level: Medium
+
+Submitted by: Ayushman Sharma  
+Date: July 09, 2025
+
+----------------------------------------------------
+1. PROBLEM STATEMENT
+----------------------------------------------------
+Soil is a crucial component in agriculture, and different crops thrive on different soil types. Understanding which crops are suitable for a particular soil is essential for maximizing yield and maintaining soil health. This application helps users identify suitable crops for different soil types and connect with verified seed distributors. The platform is managed by an admin who maintains the soil and distributor database with the help of specialists.
+
+----------------------------------------------------
+2. PROJECT OBJECTIVES
+----------------------------------------------------
+- Build a responsive frontend to serve both users and admins
+- Enable user registration and login functionality
+- Allow the admin to add soil types and distributor details dynamically
+- Allow users to view soil information and distributor listings
+- Store and retrieve data using Firebase Firestore
+- Host the application using Firebase Hosting
+
+----------------------------------------------------
+3. SYSTEM ARCHITECTURE OVERVIEW
+----------------------------------------------------
+Modules:
+- Frontend (HTML/CSS/JS using Tailwind)
+- Firebase Authentication (user/admin login)
+- Firebase Firestore (dynamic data storage)
+- Firebase Hosting (live deployment)
+- Modular JavaScript structure: auth.js, admin.js, user.js
+
+Actors:
+- User: Registers, logs in, views soil types and distributors
+- Admin: Logs in, adds soil and distributor entries
+
+----------------------------------------------------
+4. SYSTEM COMPONENTS
+----------------------------------------------------
+- index.html: Landing page
+- login.html: User/Admin login
+- register.html: User registration
+- admin.html: Admin dashboard to post soil/distributor details
+- soil-details.html: Public soil information viewer
+- distributor-details.html: Public distributor viewer
+- auth.js: Firebase authentication logic
+- admin.js: Admin post logic to Firestore
+- user.js: Fetch and display logic for soil/distributors
+- firebase-config.js: Firebase initialization
+
+----------------------------------------------------
+5. FIREBASE INTEGRATION
+----------------------------------------------------
+- Firebase Auth: Used for user and admin login/register
+- Firestore: Database for storing soil and distributor information
+- Firebase Hosting: Deployed to https://soil-876a9.web.app
+
+----------------------------------------------------
+6. TEST CASES
+------------------------------------------------------------------------------
+| Test Case                         | Expected Result                        |
+|-----------------------------------|----------------------------------------|
+| User registration                 | User added in Firebase Auth            |
+| Admin login using admin@soil.com  | Redirects to admin.html                |
+| User login                        | Redirects to soil-details.html         |
+| Post soil type as admin           | New entry appears in Firestore         |
+| View soil/distributor details     | Data fetched and displayed dynamically |
+------------------------------------------------------------------------------
+
+----------------------------------------------------
+7. OPTIMIZATIONS DONE
+----------------------------------------------------
+- Modular code structure using ES6 modules
+- Clean routing between pages using anchor links and buttons
+- Lightweight frontend with Tailwind CSS and mobile responsiveness
+- Single Page App configuration on Firebase Hosting
+
+----------------------------------------------------
+8. FUTURE IMPROVEMENTS
+----------------------------------------------------
+- Add role-based Firestore security rules
+- Store user profile data in Firestore (e.g., name, preferences)
+- Filter/search in soil and distributor listings
+- Admin analytics dashboard for data monitoring
+
+----------------------------------------------------
+9. DEPLOYMENT DETAILS
+----------------------------------------------------
+Live Site: https://soil-876a9.web.app  
+Firebase Services: Hosting, Authentication, Firestore
+
+

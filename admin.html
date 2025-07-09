@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Soil Farming Agent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'earth-brown': '#8B4513',
+                        'soil-brown': '#A0522D',
+                        'leaf-green': '#6B8E23',
+                        'sage-green': '#9CAF88',
+                        'cream': '#F5F5DC',
+                        'light-green': '#E8F5E8'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
+        <div class="flex items-center justify-between px-6 py-4">
+            <div class="flex items-center space-x-4">
+                <div class="w-10 h-10 bg-leaf-green rounded-full flex items-center justify-center">
+                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold text-earth-brown">Admin Dashboard</h1>
+                    <p class="text-sm text-gray-600">Soil Farming Agent Portal</p>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2 text-sm text-gray-600">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                    </svg>
+                    <span>Admin User</span>
+                </div>
+                <button class="text-gray-500 hover:text-gray-700 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M16 17v-3H9v-4h7V7l5 5-5 5M14 2a2 2 0 012 2v2h-2V4H4v16h10v-2h2v2a2 2 0 01-2 2H4a2 2 0 01-2-2V4a2 2 0 012-2h10z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white shadow-lg border-r border-gray-200">
+            <nav class="p-6">
+                <div class="space-y-2">
+                    <button onclick="showSection('dashboard')" id="dashboardBtn"
+                        class="w-full flex items-center space-x-3 px-4 py-3 text-left rounded-lg hover:bg-light-green transition-colors duration-200 text-gray-700 hover:text-leaf-green">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" />
+                        </svg>
+                        <span class="font-medium">Dashboard Overview</span>
+                    </button>
+
+                    <button onclick="showSection('soil')" id="soilBtn"
+                        class="w-full flex items-center space-x-3 px-4 py-3 text-left rounded-lg hover:bg-light-green transition-colors duration-200 text-gray-700 hover:text-leaf-green">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" />
+                        </svg>
+                        <span class="font-medium">Post Soil Details</span>
+                    </button>
+
+                    <button onclick="showSection('distributor')" id="distributorBtn"
+                        class="w-full flex items-center space-x-3 px-4 py-3 text-left rounded-lg hover:bg-light-green transition-colors duration-200 text-gray-700 hover:text-leaf-green">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                        <span class="font-medium">Post Distributor Details</span>
+                    </button>
+
+                    <button onclick="showSection('reports')" id="reportsBtn"
+                        class="w-full flex items-center space-x-3 px-4 py-3 text-left rounded-lg hover:bg-light-green transition-colors duration-200 text-gray-700 hover:text-leaf-green">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+                        </svg>
+                        <span class="font-medium">Reports & Analytics</span>
+                    </button>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6">
+            <!-- Dashboard Overview Section -->
+            <div id="dashboardSection" class="section-content">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-bold text-earth-brown mb-2">Dashboard Overview</h2>
+                    <p class="text-gray-600">Monitor your agriculture portal's key metrics and activities</p>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-gray-600">Total Soil Types</p>
+                                <p class="text-3xl font-bold text-leaf-green">247</p>
+                            </div>
+                            <div class="w-12 h-12 bg-leaf-green/10 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-leaf-green" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-gray-600">Active Distributors</p>
+                                <p class="text-3xl font-bold text-earth-brown">156</p>
+                            </div>
+                            <div class="w-12 h-12 bg-earth-brown/10 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-earth-brown" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-gray-600">Registered Users</p>
+                                <p class="text-3xl font-bold text-sage-green">1,234</p>
+                            </div>
+                            <div class="w-12 h-12 bg-sage-green/10 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-sage-green" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-gray-600">Monthly Queries</p>
+                                <p class="text-3xl font-bold text-soil-brown">892</p>
+                            </div>
+                            <div class="w-12 h-12 bg-soil-brown/10 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-soil-brown" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Recent Activity</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4 p-3 bg-gray-50 rounded-lg">
+                            <div class="w-2 h-2 bg-leaf-green rounded-full"></div>
+                            <span class="text-gray-700">New soil type "Clay Loam" added to database</span>
+                            <span class="text-sm text-gray-500 ml-auto">2 hours ago</span>
+                        </div>
+                        <div class="flex items-center space-x-4 p-3 bg-gray-50 rounded-lg">
+                            <div class="w-2 h-2 bg-earth-brown rounded-full"></div>
+                            <span class="text-gray-700">Distributor "Green Valley Seeds" updated contact info</span>
+                            <span class="text-sm text-gray-500 ml-auto">5 hours ago</span>
+                        </div>
+                        <div class="flex items-center space-x-4 p-3 bg-gray-50 rounded-lg">
+                            <div class="w-2 h-2 bg-sage-green rounded-full"></div>
+                            <span class="text-gray-700">25 new user registrations today</span>
+                            <span class="text-sm text-gray-500 ml-auto">1 day ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soil Details Section -->
+            <div id="soilSection" class="section-content hidden">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-bold text-earth-brown mb-2">Post Soil Details</h2>
+                    <p class="text-gray-600">Add new soil types and their characteristics to the database</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md p-8 border border-gray-100">
+                    <form class="space-y-6" onsubmit="handleSoilSubmit(event)">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Soil Name -->
+                            <div>
+                                <label for="soilName" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <span class="flex items-center">
+                                        <svg class="w-4 h-4 mr-2 text-leaf-green" fill="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" />
+                                        </svg>
+                                        Soil Name
+                                    </span>
+                                </label>
+                                <input type="text" id="soilName" name="soilName" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-leaf-green focus:border-leaf-green transition-colors duration-200"
+                                    placeholder="e.g., Sandy Loam">
+                            </div>
+
+                            <!-- Soil Type -->
+                            <div>
+                                <label for="soilType" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <span class="flex items-center">
+                                        <svg class="w-4 h-4 mr-2 text-leaf-green" fill="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path d="M7 10l5 5 5-5z" />
+                                        </svg>
+                                        Soil Type Category
+                                    </span>
+                                </label>
+                                <select id="soilType" name="soilType" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-leaf-green focus:border-leaf-green transition-colors duration-200">
+                                    <option value="">Select soil type</option>
+                                    <option value="clay">Clay</option>
+                                    <option value="sandy">Sandy</option>
+                                    <option value="loam">Loam</option>
+                                    <option value="silt">Silt</option>
+                                    <option value="peat">Peat</option>
+                                    <option value="chalk">Chalk</option>
+                                </select>
+                            </div>
+
+                            <!-- pH Level -->
+                            <div>
+                                <label for="phLevel" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <span class="flex items-center">
+                                        <svg class="w-4 h-4 mr-2 text-leaf-green" fill="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+                                        </svg>
+                                        pH Level
+                                    </span>
+                                </label>
+                                <input type="number" id="phLevel" name="phLevel" step="0.1" min="0" max="14" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-leaf-green focus:border-leaf-green transition-colors duration-200"
+                                    placeholder="e.g., 6.5">
+                            </div>
+
+                            <!-- Drainage -->
+                            <div>
+                                <label for="drainage" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <span class="flex items-center">
+                                        <svg class="w-4 h-4 mr-2 text-leaf-green" fill="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                        </svg>
+                                        Drainage Quality
+                                    </span>
+                                </label>
+                                <select id="drainage" name="drainage" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-leaf-green focus:border-leaf-green transition-colors duration-200">
+                                    <option value="">Select drainage</option>
+                                    <option value="excellent">Excellent</option>
+                                    <option value="good">Good</option>
+                                    <option value="moderate">Moderate</option>
+                                    <option value="poor">Poor</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Suitable Crops -->
+                        <div>
+                            <label for="suitableCrops" class="block text-sm font-medium text-gray-700 mb-2">
+                                <span class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2 text-leaf-green" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                                    </svg>
+                                    Suitable Crops
+                                </span>
+                            </label>
+                            <textarea id="suitableCrops" name="suitableCrops" rows="3" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-leaf-green focus:border-leaf-green transition-colors duration-200"
+                                placeholder="List crops suitable for this soil type (comma-separated)"></textarea>
+                        </div>
+
+                        <!-- Description -->
+                        <div>
+                            <label for="soilDescription" class="block text-sm font-medium text-gray-700 mb-2">
+                                <span class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2 text-leaf-green" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" />
+                                    </svg>
+                                    Description
+                                </span>
+                            </label>
+                            <textarea id="soilDescription" name="soilDescription" rows="4" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-leaf-green focus:border-leaf-green transition-colors duration-200"
+                                placeholder="Provide detailed description of soil characteristics, benefits, and usage recommendations"></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full md:w-auto bg-leaf-green text-white px-8 py-3 rounded-lg font-semibold hover:bg-earth-brown transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                            </svg>
+                            <span>Add Soil Details</span>
+                        </button>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="soilSuccessMessage"
+                        class="hidden mt-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>Soil details added successfully!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Distributor Details Section -->
+            <div id="distributorSection" class="section-content hidden">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-bold text-earth-brown mb-2">Post Distributor Details</h2>
+                    <p class="text-gray-600">Add new distributors and their information to the network</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md p-8 border border-gray-100">
+                    <form class="space-y-6" onsubmit="handleDistributorSubmit(event)">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Company Name -->
+                            <div>
+                                <label for="companyName" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <span class="flex items-center">
+                                        <svg class="w-4 h-4 mr-2 text-leaf-green" fill="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                        </svg>
+                                        Company Name
+                                    </span>
+                                </label>
+                                <input type="text" id="companyName" name="companyName" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-leaf-green focus:border-leaf-green transition-colors duration-200"
+                                    placeholder="e.g., Green Valley Seeds Co.">
+                            </div>
+
+                            <!-- Contact Person -->
+                            <div>
+                                <label for="contactPerson" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <span class="flex items-center">
+                                        <svg class="w-4 h-4 mr-2 text-leaf-green" fill="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                                        </svg>
+                                        Contact Person
+                                    </span>
+                                </label>
+                                <input type="text" id="contactPerson" name="contactPerson" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-leaf-green focus:border-leaf-green transition-colors duration-200"
+                                    placeholder="Full name of contact person">
+                            </div>
+
+                            <!-- Email -->
+                            <div>
+                                <label for="distributorEmail" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <span class="flex items-center">
+                                        <svg class="w-4 h-4 mr-2 text-leaf-green" fill="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                                        </svg>
+                                        Email Address
+                                    </span>
+                                </label>
+                                <input type="email" id="distributorEmail" name="distributorEmail" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-leaf-green focus:border-leaf-green transition-colors duration-200"
+                                    placeholder="contact@company.com">
+                            </div>
+
+                            <!-- Phone -->
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <span class="flex items-center">
+                                        <svg class="w-4 h-4 mr-2 text-leaf-green" fill="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                                        </svg>
+                                        Phone Number
+                                    </span>
+                                </label>
+                                <input type="tel" id="phone" name="phone" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-leaf-green focus:border-leaf-green transition-colors duration-200"
+                                    placeholder="+1 (555) 123-4567">
+                            </div>
+
+                            <!-- Location -->
+                            <div>
+                                <label for="location" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <span class="flex items-center">
+                                        <svg class="w-4 h-4 mr-2 text-leaf-green" fill="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                                        </svg>
+                                        Location/City
+                                    </span>
+                                </label>
+                                <input type="text" id="location" name="location" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-leaf-green focus:border-leaf-green transition-colors duration-200"
+                                    placeholder="City, State">
+                            </div>
+
+                            <!-- Product Category -->
+                            <div>
+                                <label for="productCategory" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <span class="flex items-center">
+                                        <svg class="w-4 h-4 mr-2 text-leaf-green" fill="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path d="M7 10l5 5 5-5z" />
+                                        </svg>
+                                        Product Category
+                                    </span>
+                                </label>
+                                <select id="productCategory" name="productCategory" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-leaf-green focus:border-leaf-green transition-colors duration-200">
+                                    <option value="">Select category</option>
+                                    <option value="seeds">Seeds</option>
+                                    <option value="fertilizers">Fertilizers</option>
+                                    <option value="pesticides">Pesticides</option>
+                                    <option value="equipment">Farm Equipment</option>
+                                    <option value="organic">Organic Products</option>
+                                    <option value="mixed">Mixed Products</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Products Offered -->
+                        <div>
+                            <label for="productsOffered" class="block text-sm font-medium text-gray-700 mb-2">
+                                <span class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2 text-leaf-green" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a1 1 0 0 0-1 1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8a1 1 0 0 0-1-1zM10 6a2 2 0 0 1 4 0v1h-4V6zm8 13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9h2v1a1 1 0 0 0 2 0V9h4v1a1 1 0 0 0 2 0V9h2v10z" />
+                                    </svg>
+                                    Products Offered
+                                </span>
+                            </label>
+                            <textarea id="productsOffered" name="productsOffered" rows="3" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-leaf-green focus:border-leaf-green transition-colors duration-200"
+                                placeholder="List main products and services offered (comma-separated)"></textarea>
+                        </div>
+
+                        <!-- Company Description -->
+                        <div>
+                            <label for="companyDescription" class="block text-sm font-medium text-gray-700 mb-2">
+                                <span class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2 text-leaf-green" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" />
+                                    </svg>
+                                    Company Description
+                                </span>
+                            </label>
+                            <textarea id="companyDescription" name="companyDescription" rows="4" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-leaf-green focus:border-leaf-green transition-colors duration-200"
+                                placeholder="Brief description of the company, its history, and specializations"></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full md:w-auto bg-leaf-green text-white px-8 py-3 rounded-lg font-semibold hover:bg-earth-brown transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                            </svg>
+                            <span>Add Distributor</span>
+                        </button>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="distributorSuccessMessage"
+                        class="hidden mt-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>Distributor details added successfully!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reports Section -->
+            <div id="reportsSection" class="section-content hidden">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-bold text-earth-brown mb-2">Reports & Analytics</h2>
+                    <p class="text-gray-600">View detailed analytics and generate reports</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Popular Soil Types</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Sandy Loam</span>
+                                <span class="font-semibold text-leaf-green">45%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-leaf-green h-2 rounded-full" style="width: 45%"></div>
+                            </div>
+
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Clay</span>
+                                <span class="font-semibold text-earth-brown">30%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-earth-brown h-2 rounded-full" style="width: 30%"></div>
+                            </div>
+
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Silt</span>
+                                <span class="font-semibold text-sage-green">25%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-sage-green h-2 rounded-full" style="width: 25%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Top Distributors</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                <div>
+                                    <p class="font-medium text-gray-800">Green Valley Seeds</p>
+                                    <p class="text-sm text-gray-600">Seeds & Fertilizers</p>
+                                </div>
+                                <span class="text-leaf-green font-semibold">4.8★</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                <div>
+                                    <p class="font-medium text-gray-800">Farm Supply Co.</p>
+                                    <p class="text-sm text-gray-600">Equipment & Tools</p>
+                                </div>
+                                <span class="text-leaf-green font-semibold">4.7★</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                <div>
+                                    <p class="font-medium text-gray-800">Organic Solutions</p>
+                                    <p class="text-sm text-gray-600">Organic Products</p>
+                                </div>
+                                <span class="text-leaf-green font-semibold">4.6★</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Navigation functionality
+        function showSection(sectionName) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach(section => section.classList.add('hidden'));
+
+            // Remove active state from all buttons
+            const buttons = document.querySelectorAll('aside button');
+            buttons.forEach(button => {
+                button.className = 'w-full flex items-center space-x-3 px-4 py-3 text-left rounded-lg hover:bg-light-green transition-colors duration-200 text-gray-700 hover:text-leaf-green';
+            });
+
+            // Show selected section
+            document.getElementById(sectionName + 'Section').classList.remove('hidden');
+
+            // Add active state to selected button
+            const activeButton = document.getElementById(sectionName + 'Btn');
+            activeButton.className = 'w-full flex items-center space-x-3 px-4 py-3 text-left rounded-lg bg-leaf-green text-white shadow-md';
+        }
+
+        // Form submission handlers
+        function handleSoilSubmit(event) {
+            event.preventDefault();
+
+            // Show success message
+            document.getElementById('soilSuccessMessage').classList.remove('hidden');
+
+            // Reset form
+            event.target.reset();
+
+            // Hide success message after 3 seconds
+            setTimeout(() => {
+                document.getElementById('soilSuccessMessage').classList.add('hidden');
+            }, 3000);
+        }
+
+        function handleDistributorSubmit(event) {
+            event.preventDefault();
+
+            // Show success message
+            document.getElementById('distributorSuccessMessage').classList.remove('hidden');
+
+            // Reset form
+            event.target.reset();
+
+            // Hide success message after 3 seconds
+            setTimeout(() => {
+                document.getElementById('distributorSuccessMessage').classList.add('hidden');
+            }, 3000);
+        }
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function () {
+            showSection('dashboard');
+        });
+    </script>
+    <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'95a0b96d47895994',t:'MTc1MTY1NDE0Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+
+    <script type="module">
+        import { submitSoil, submitDistributor } from './js/admin.js';
+        window.submitSoil = submitSoil;
+        window.submitDistributor = submitDistributor;
+    </script>
+
+</body>
+
+</html>
